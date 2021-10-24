@@ -1,0 +1,10 @@
+^C:\USERS\BTWIL\DESKTOP\UNIVERSITY\YEAR 3\MULTIPLAYER\CI628\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/btwil/Desktop/University/Year 3/Multiplayer/CI628" "-BC:/Users/btwil/Desktop/University/Year 3/Multiplayer/CI628/build" --check-stamp-file "C:/Users/btwil/Desktop/University/Year 3/Multiplayer/CI628/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

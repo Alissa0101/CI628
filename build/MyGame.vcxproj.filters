@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{33D1EAB4-E2D4-39B9-A507-053F75A4DAA5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BF5D656A-26F1-3ECA-A6C6-F63C55DAB74B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

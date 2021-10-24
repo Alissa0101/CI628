@@ -1,0 +1,10 @@
+^C:\USERS\BTWIL\DESKTOP\UNIVERSITY\YEAR 3\MULTIPLAYER\CI628\BUILD\CMAKEFILES\85F6A780AC89465BA77C8F09CEC09489\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/btwil/Desktop/University/Year 3/Multiplayer/CI628" "-BC:/Users/btwil/Desktop/University/Year 3/Multiplayer/CI628/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/btwil/Desktop/University/Year 3/Multiplayer/CI628/build/MyGame.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
