@@ -22,9 +22,9 @@ class MyGame {
     private:
         SDL_Rect player1 = { 800/4, 0, 20, 60 };
         SDL_Rect player2 = { 3 * 800 / 4 - 20, 0, 20, 60 };
-        SDL_Rect ball = {0, 0, 30, 30};
+        SDL_Rect ball = {0, 0, 10, 10};
 
-        TTF_Font* font_Arial = TTF_OpenFont("arial.ttf", 24);
+        
         
     public:
         std::vector<std::string> messages;
@@ -34,6 +34,8 @@ class MyGame {
         void input(SDL_Event& event);
         void update();
         void render(SDL_Renderer* renderer);
+
+        void renderText(SDL_Renderer* renderer, const char* text, int fontSize, int x, int y, bool boundLeft);
 };
 
 #endif

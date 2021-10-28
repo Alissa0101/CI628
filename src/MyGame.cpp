@@ -60,17 +60,39 @@ void MyGame::render(SDL_Renderer* renderer) {
 
 
     //Render scores
-    SDL_Surface* text;
-
-    SDL_Color color = { 255, 255, 255 };
-
-    text = TTF_RenderText_Solid( font_Arial, "Test text", color);
-
-    SDL_Texture* text_texture;
-
-    text_texture = SDL_CreateTextureFromSurface(renderer, text);
+    renderText(renderer, std::to_string(game_data.player1Score).c_str(), 72, 100, 100, false);
+    renderText(renderer, std::to_string(game_data.player2Score).c_str(), 72, 100, 100, true);
     
-    SDL_Rect dest = { 100, 100, text->w, text->h };
 
-    SDL_RenderCopy(renderer, text_texture, &dest, NULL);
-}   
+}
+
+/// <summary>
+/// Render text at a position
+/// https://stackoverflow.com/questions/36198732/draw-text-to-screen
+/// </summary>
+/// <param name="renderer"></param>
+/// <param name="text"></param>
+/// <param name="fontSize"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
+/// <param name="boundLeft"></param>
+void MyGame::renderText(SDL_Renderer* renderer, const char* text, int fontSize, int x, int y, bool boundLeft)
+{
+    SDL_Color color = { 255, 255, 255 };;
+
+    TTF_Init();
+    TTF_Font* font = TTF_OpenFont("arial.ttf", fontSize);
+    SDL_Surface* textSurface = TTF_RenderText_Blended(font, text, color);
+
+    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    SDL_Rect dest = { x, y, textSurface->w, textSurface->h };
+    if (boundLeft) {
+        dest = { 800 - x - textSurface->w, y, textSurface->w, textSurface->h };
+    }
+    SDL_RenderCopy(renderer, textTexture, NULL, &dest);
+
+    SDL_FreeSurface(textSurface);
+    SDL_DestroyTexture(textTexture);
+    TTF_CloseFont(font);
+    TTF_Quit();
+}
