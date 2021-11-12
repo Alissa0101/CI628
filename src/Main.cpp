@@ -109,7 +109,7 @@ void loop(SDL_Renderer* renderer) {
 
         SDL_RenderPresent(renderer);
 
-        SDL_Delay(17);
+        SDL_Delay(6);
     }
 }
 
@@ -177,7 +177,11 @@ int main(int argc, char** argv) {
     SDL_CreateThread(on_receive, "ConnectionReceiveThread", (void*)socket);
     SDL_CreateThread(on_send, "ConnectionSendThread", (void*)socket);
 
+    game->init();
+
     run_game();
+
+    game->end();
 
     delete game;
 

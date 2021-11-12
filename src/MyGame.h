@@ -8,6 +8,11 @@
 #include "SDL.h"
 #include <SDL_ttf.h>
 
+
+#include "Player.h"
+#include "Text.h"
+#include "Ball.h"
+
 static struct GameData {
     int player1Y = 0;
     int player2Y = 0;
@@ -20,14 +25,23 @@ static struct GameData {
 class MyGame {
 
     private:
-        SDL_Rect player1 = { 800/4, 0, 20, 60 };
-        SDL_Rect player2 = { 3 * 800 / 4 - 20, 0, 20, 60 };
-        SDL_Rect ball = {0, 0, 10, 10};
-
+        //SDL_Rect player1 = { 800/4, 0, 20, 60 };
+        //SDL_Rect player2 = { 3 * 800 / 4 - 20, 0, 20, 60 };
+        //SDL_Rect ball = {0, 0, 10, 10};
         
+        Ball ball;
+
+        Player player1;
+        Player player2;
+
+        Text player1ScoreText;
+        Text player2ScoreText;
+       
         
     public:
         std::vector<std::string> messages;
+
+        void init();
 
         void on_receive(std::string message, std::vector<std::string>& args);
         void send(std::string message);
@@ -35,7 +49,11 @@ class MyGame {
         void update();
         void render(SDL_Renderer* renderer);
 
-        void renderText(SDL_Renderer* renderer, const char* text, int fontSize, int x, int y, bool boundLeft);
+        void renderFilledCircle(SDL_Renderer* renderer, int radius, int xOffset, int yOffset);
+
+        void end();
+
+
 };
 
 #endif

@@ -1,6 +1,5 @@
 #include "MyGame.h"
 
-
 void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
     if (cmd == "GAME_DATA") {
         // we should have exactly 4 arguments
@@ -14,9 +13,10 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
     else if (cmd == "SCORES") {
         if (args.size() == 2) {
             game_data.player1Score = stoi(args.at(0));
-            game_data.player2Score = stoi(args.at(1 ));
+            game_data.player2Score = stoi(args.at(1));
+            player1ScoreText.setText(std::to_string(game_data.player1Score));
+            player2ScoreText.setText(std::to_string(game_data.player2Score));
         }
-        
     }
     else {
         std::cout << "Received: " << cmd << std::endl;
@@ -27,6 +27,23 @@ void MyGame::send(std::string message) {
     messages.push_back(message);
 }
 
+void MyGame::init(){
+
+    ball.init(100, 100, 10, {255, 255, 0});
+
+    player1.rect = { 0, 0, 20, 60 };
+    player1.color = { 255, 255, 255, 255 };
+    player1.x = 800 / 4; // put the player on the left
+
+    player2.rect = { 0, 0, 20, 60 };
+    player2.color = { 255, 255, 255, 255 };
+    player2.x = 3 * 800 / 4 - 20; // put the player on the right
+
+    player1ScoreText.init(100, 100, 72, false, {255, 255, 255});
+    player2ScoreText.init(100, 100, 72, true, {255, 255, 255});
+    
+}
+
 void MyGame::input(SDL_Event& event) {
     switch (event.key.keysym.sym) {
         case SDLK_w:
@@ -34,6 +51,12 @@ void MyGame::input(SDL_Event& event) {
             break;
         case SDLK_s:
             send(event.type == SDL_KEYDOWN ? "S_DOWN" : "S_UP");
+            break;
+        case SDLK_i:
+            send(event.type == SDL_KEYDOWN ? "I_DOWN" : "I_UP");
+            break;
+        case SDLK_k:
+            send(event.type == SDL_KEYDOWN ? "K_DOWN" : "K_UP");
             break;
     }
 }
@@ -46,53 +69,19 @@ void MyGame::update() {
 }
 
 void MyGame::render(SDL_Renderer* renderer) {
-    //Render player 1
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderDrawRect(renderer, &player1);
 
-    //Render player 2
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderDrawRect(renderer, &player2);
+    ball.render(renderer);
 
-    //Render the ball
-    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-    SDL_RenderDrawRect(renderer, &ball);
-
-
-    //Render scores
-    renderText(renderer, std::to_string(game_data.player1Score).c_str(), 72, 100, 100, false);
-    renderText(renderer, std::to_string(game_data.player2Score).c_str(), 72, 100, 100, true);
+    player1.render(renderer);
+    player2.render(renderer);
     
+    player1ScoreText.render(renderer);
+    player2ScoreText.render(renderer);
 
 }
 
-/// <summary>
-/// Render text at a position
-/// https://stackoverflow.com/questions/36198732/draw-text-to-screen
-/// </summary>
-/// <param name="renderer"></param>
-/// <param name="text"></param>
-/// <param name="fontSize"></param>
-/// <param name="x"></param>
-/// <param name="y"></param>
-/// <param name="boundLeft"></param>
-void MyGame::renderText(SDL_Renderer* renderer, const char* text, int fontSize, int x, int y, bool boundLeft)
-{
-    SDL_Color color = { 255, 255, 255 };;
-
-    TTF_Init();
-    TTF_Font* font = TTF_OpenFont("arial.ttf", fontSize);
-    SDL_Surface* textSurface = TTF_RenderText_Blended(font, text, color);
-
-    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-    SDL_Rect dest = { x, y, textSurface->w, textSurface->h };
-    if (boundLeft) {
-        dest = { 800 - x - textSurface->w, y, textSurface->w, textSurface->h };
-    }
-    SDL_RenderCopy(renderer, textTexture, NULL, &dest);
-
-    SDL_FreeSurface(textSurface);
-    SDL_DestroyTexture(textTexture);
-    TTF_CloseFont(font);
-    TTF_Quit();
+void MyGame::end() {
+    player1ScoreText.end();
+    player2ScoreText.end();
 }
+
