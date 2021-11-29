@@ -18,8 +18,18 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
             player2ScoreText.setText(std::to_string(game_data.player2Score));
         }
     }
+    else if (cmd == "BALL_HIT_BAT1") {
+        if (args.size() == 0) {
+            player1.hit(1, ball.y);
+        }
+    }
+    else if (cmd == "BALL_HIT_BAT2") {
+        if (args.size() == 0) {
+            player2.hit(-1, ball.y);
+        }
+    }
     else {
-        std::cout << "Received: " << cmd << std::endl;
+        std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
     }
 }
 

@@ -1,13 +1,4 @@
-﻿  Main.cpp
+﻿  Player.cpp
 C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Player.h(8,2): warning C4091: 'static ': ignored on left of 'Color' when no variable is declared
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp(28,21): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp(37,19): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp(70,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  MyGame.cpp
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Player.h(8,2): warning C4091: 'static ': ignored on left of 'Color' when no variable is declared
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(65,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(66,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(67,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(68,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+..\src\Player.cpp(46,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   MyGame.vcxproj -> C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\build\Debug\MyGame.exe

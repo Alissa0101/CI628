@@ -1,5 +1,6 @@
 #include "SDL_net.h"
 #include <SDL_ttf.h>
+#include <SDL_image.h>
 
 #include "MyGame.h"
 
@@ -19,6 +20,7 @@ static int on_receive(void* socket_ptr) {
 
     char message[message_length];
     int received;
+
 
     // TODO: while(), rather than do
     do {
@@ -155,6 +157,12 @@ int main(int argc, char** argv) {
     // Initialize TTF
     if (TTF_Init() == -1) {
         printf("TTF_Init: %s\n", TTF_GetError());
+        exit(2);
+    }
+
+    // Initialize IMG
+    if (IMG_Init(IMG_INIT_PNG) == -1) {
+        printf("IMG_Init: %s\n", IMG_GetError());
         exit(2);
     }
 

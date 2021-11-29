@@ -12,5 +12,9 @@ class Player : public GameObject {
 		Color color;
 		SDL_Rect rect;
 
+		int angle = 0;
+
 		void render(SDL_Renderer* renderer);
+
+		void hit(int dir, int ballY);
 };
