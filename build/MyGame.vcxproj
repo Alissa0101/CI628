@@ -316,12 +316,16 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="..\src\Ball.cpp" />
     <ClCompile Include="..\src\GameObject.cpp" />
+    <ClCompile Include="..\src\Particle.cpp" />
+    <ClCompile Include="..\src\ParticleSystem.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
     <ClCompile Include="..\src\Text.cpp" />
     <ClCompile Include="C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp" />
     <ClCompile Include="C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp" />
     <ClInclude Include="..\src\Ball.h" />
     <ClInclude Include="..\src\GameObject.h" />
+    <ClInclude Include="..\src\Particle.h" />
+    <ClInclude Include="..\src\ParticleSystem.h" />
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\Text.h" />
     <ClInclude Include="C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.h" />

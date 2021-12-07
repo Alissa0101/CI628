@@ -10,9 +10,12 @@ static struct Color {
 class Player : public GameObject {
 	public:
 		Color color;
-		SDL_Rect rect;
+		SDL_Rect rect = { 0, 0, 20, 60 };
+		SDL_Surface* surface;
 
 		int angle = 0;
+
+		void init(int _x, Color _color);
 
 		void render(SDL_Renderer* renderer);
 

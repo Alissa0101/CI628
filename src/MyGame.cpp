@@ -17,16 +17,19 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
             player1ScoreText.setText(std::to_string(game_data.player1Score));
             player2ScoreText.setText(std::to_string(game_data.player2Score));
         }
+        std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
     }
     else if (cmd == "BALL_HIT_BAT1") {
         if (args.size() == 0) {
             player1.hit(1, ball.y);
         }
+        std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
     }
     else if (cmd == "BALL_HIT_BAT2") {
         if (args.size() == 0) {
             player2.hit(-1, ball.y);
         }
+        std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
     }
     else {
         std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
@@ -41,16 +44,21 @@ void MyGame::init(){
 
     ball.init(100, 100, 10, {255, 255, 0});
 
-    player1.rect = { 0, 0, 20, 60 };
-    player1.color = { 255, 255, 255, 255 };
-    player1.x = 800 / 4; // put the player on the left
+    player1.init(800 / 4, { 255, 255, 255, 255 });
+    player2.init(3 * 800 / 4 - 20, { 255, 255, 255, 255 });
 
-    player2.rect = { 0, 0, 20, 60 };
-    player2.color = { 255, 255, 255, 255 };
-    player2.x = 3 * 800 / 4 - 20; // put the player on the right
+    //player1.rect = { 0, 0, 20, 60 };
+    //player1.color = { 255, 255, 255, 255 };
+    //player1.x = 800 / 4; // put the player on the left
+
+    //player2.rect = { 0, 0, 20, 60 };
+    //player2.color = { 255, 255, 255, 255 };
+    //player2.x = 3 * 800 / 4 - 20; // put the player on the right
 
     player1ScoreText.init(100, 100, 72, false, {255, 255, 255});
     player2ScoreText.init(100, 100, 72, true, {255, 255, 255});
+
+    particles.init(1000, 400, 400);
     
 }
 
@@ -76,9 +84,13 @@ void MyGame::update() {
     player2.y = game_data.player2Y;
     ball.x = game_data.ballX;
     ball.y = game_data.ballY;
+    //particles.follow(ball.x, ball.y);
+    //particles.fade(ball.x, ball.y);
 }
 
 void MyGame::render(SDL_Renderer* renderer) {
+
+    particles.update(renderer, ball.x, ball.y);
 
     ball.render(renderer);
 

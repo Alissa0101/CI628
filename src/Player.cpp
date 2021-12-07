@@ -1,28 +1,25 @@
 #include "Player.h"
 #include <SDL_image.h>
 
+void Player::init(int _x, Color _color){
+	x = static_cast<int>(_x);
+	color = _color;
+
+	surface = IMG_Load("BatTexture.png");
+
+}
+
 void Player::render(SDL_Renderer* renderer){
 	rect.x = static_cast<int>(x);
 	rect.y = static_cast<int>(y);
 
-	//SDL_Surface* image = SDL_LoadBMP("textTexture.png");
-	SDL_Texture* texture = IMG_LoadTexture(renderer, "BatTexture.png");//SDL_CreateTextureFromSurface(renderer, image);
-
-	SDL_Rect dstRect;
-
-	//SDL_QueryTexture(texture, NULL, NULL, &dstRect.w, &dstRect.h);
-
-	dstRect.x = rect.x;
-	dstRect.y = rect.y;
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface); //IMG_LoadTexture(renderer, "BatTexture.png");//SDL_CreateTextureFromSurface(renderer, image);
 	
-
-	dstRect.w = rect.w;
-	dstRect.h = rect.h;
 
 	//SDL_RenderCopy(renderer, texture, NULL, NULL);
 	//SDL_RenderPresent(renderer);
 	
-	SDL_RenderCopyEx(renderer, texture, NULL, &dstRect, angle, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, texture, NULL, &rect, angle, NULL, SDL_FLIP_NONE);
 
 	if (angle > 0) {
 		angle -= rand() % 10 + 1;

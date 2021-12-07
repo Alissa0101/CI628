@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Text.h"
 #include "Ball.h"
+#include "ParticleSystem.h"
 
 static struct GameData {
     int player1Y = 0;
@@ -36,6 +37,8 @@ class MyGame {
 
         Text player1ScoreText;
         Text player2ScoreText;
+
+        ParticleSystem particles;
        
         
     public:
