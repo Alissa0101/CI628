@@ -30,8 +30,12 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
             player2.hit(-1, ball.y);
         }
         std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
-    }
-    else {
+    } else if (cmd == "GAMEREADY") {
+        if (args.size() == 0) {
+            initGameWorld();
+        }
+        std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
+    } else {//REMOVE LATER
         std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
     }
 }
@@ -42,7 +46,16 @@ void MyGame::send(std::string message) {
 
 void MyGame::init(){
 
-    ball.init(100, 100, 10, {255, 255, 0});
+    testButton.init({50, 50, 50, 50});
+
+    //send("Ready_player1");
+
+    //initGameWorld();
+    
+}
+
+void MyGame::initGameWorld() {
+    ball.init(100, 100, 10, { 255, 255, 0 });
 
     player1.init(800 / 4, { 255, 255, 255, 255 });
     player2.init(3 * 800 / 4 - 20, { 255, 255, 255, 255 });
@@ -55,11 +68,12 @@ void MyGame::init(){
     //player2.color = { 255, 255, 255, 255 };
     //player2.x = 3 * 800 / 4 - 20; // put the player on the right
 
-    player1ScoreText.init(100, 100, 72, false, {255, 255, 255});
-    player2ScoreText.init(100, 100, 72, true, {255, 255, 255});
+    player1ScoreText.init(100, 100, 72, false, { 255, 255, 255 });
+    player2ScoreText.init(100, 100, 72, true, { 255, 255, 255 });
 
     particles.init(1000, 400, 400);
-    
+
+    ready = true;
 }
 
 void MyGame::input(SDL_Event& event) {
@@ -76,29 +90,41 @@ void MyGame::input(SDL_Event& event) {
         case SDLK_k:
             send(event.type == SDL_KEYDOWN ? "K_DOWN" : "K_UP");
             break;
+        case SDLK_q:
+            send("Ready_player1");
+            break;
+        case SDLK_a:
+            send("Ready_player2");
+            break;
     }
 }
 
 void MyGame::update() {
-    player1.y = game_data.player1Y;
-    player2.y = game_data.player2Y;
-    ball.x = game_data.ballX;
-    ball.y = game_data.ballY;
-    //particles.follow(ball.x, ball.y);
-    //particles.fade(ball.x, ball.y);
+    if (ready == true) {
+        player1.y = game_data.player1Y;
+        player2.y = game_data.player2Y;
+        ball.x = game_data.ballX;
+        ball.y = game_data.ballY;
+        //particles.follow(ball.x, ball.y);
+        //particles.fade(ball.x, ball.y);
+    }
+    
 }
 
 void MyGame::render(SDL_Renderer* renderer) {
+    testButton.render(renderer);
+    if (ready == true) {
+        particles.update(renderer, ball.x, ball.y);
 
-    particles.update(renderer, ball.x, ball.y);
+        ball.render(renderer);
 
-    ball.render(renderer);
+        player1.render(renderer);
+        player2.render(renderer);
 
-    player1.render(renderer);
-    player2.render(renderer);
+        player1ScoreText.render(renderer);
+        player2ScoreText.render(renderer);
+    }
     
-    player1ScoreText.render(renderer);
-    player2ScoreText.render(renderer);
 
 }
 

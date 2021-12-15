@@ -1,20 +1,3 @@
-﻿  ParticleSystem.cpp
-..\src\ParticleSystem.cpp(18,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-..\src\ParticleSystem.cpp(19,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Main.cpp
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Player.h(8,2): warning C4091: 'static ': ignored on left of 'Color' when no variable is declared
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp(30,21): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp(39,19): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Main.cpp(72,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  MyGame.cpp
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Player.h(8,2): warning C4091: 'static ': ignored on left of 'Color' when no variable is declared
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(24,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(30,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(83,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(84,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(85,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(86,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(93,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(93,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
+﻿  Button.cpp
+..\src\Button.cpp(19,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   MyGame.vcxproj -> C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\build\Debug\MyGame.exe

@@ -8,7 +8,7 @@ void Particle::update(SDL_Renderer* renderer){
     //renderCircle(renderer);
 
 	if (color.a > 0) {
-		int newAlpha = color.a - (rand() % 18 - 1);
+		int newAlpha = color.a - (rand() % 19 - 1);
 		if (newAlpha < 0) {
 			color.a = 0;
 		}

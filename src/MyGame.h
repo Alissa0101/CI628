@@ -13,6 +13,7 @@
 #include "Text.h"
 #include "Ball.h"
 #include "ParticleSystem.h"
+#include "Button.h"
 
 static struct GameData {
     int player1Y = 0;
@@ -39,12 +40,17 @@ class MyGame {
         Text player2ScoreText;
 
         ParticleSystem particles;
+
+        Button testButton;
+
+        bool ready = false;
        
         
     public:
         std::vector<std::string> messages;
 
         void init();
+        void initGameWorld();
 
         void on_receive(std::string message, std::vector<std::string>& args);
         void send(std::string message);
