@@ -84,7 +84,7 @@ void loop(SDL_Renderer* renderer) {
     while (is_running) {
         // input
         while (SDL_PollEvent(&event)) {
-            if ((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) && event.key.repeat == 0) {
+            if ((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP || event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP) && event.key.repeat == 0) {
                 game->input(event);
 
                 switch (event.key.keysym.sym) {

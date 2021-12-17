@@ -39,11 +39,23 @@ class MyGame {
         Text player1ScoreText;
         Text player2ScoreText;
 
+        Text titleText;
+
+        Text player1ButtonText;
+        Text player2ButtonText;
+
         ParticleSystem particles;
 
-        Button testButton;
+        Button player1Button;
+        Button player2Button;
 
-        bool ready = false;
+        bool enablePlayer1Controls = true;
+
+        bool player1Ready = false;
+        bool player2Ready = false;
+
+        bool globalReady = false;
+        bool localReady = false;
        
         
     public:

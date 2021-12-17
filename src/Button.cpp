@@ -6,22 +6,28 @@ void Button::init(SDL_Rect _rect){
 
 void Button::render(SDL_Renderer* renderer){
 
+    //std::cout << "button" << std::endl;
 
-    SDL_Event e;
-    while (SDL_PollEvent(&e)) {
-        switch (e.type) {
-        case SDL_QUIT:
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-            rect.w = rect.w*1.1;
-            break;
 
-        }
-    }
-
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(renderer, &rect);
 }
 
-void Button::destroy(){
+void Button::listener(SDL_Event& event) {
+	switch (event.type) {
+		case SDL_MOUSEBUTTONDOWN:
+			//pressed = true;
+			int x, y;
+			Uint32 buttons;
+
+			buttons = SDL_GetMouseState(&x, &y);
+
+			if (rect.x <= x && x <= (rect.x + rect.w) && rect.y <= y && y <= (rect.y + rect.h)) {
+				pressed = true;
+			}
+			break;
+	}
+
+	
+
 }

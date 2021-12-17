@@ -38,6 +38,9 @@ void Text::render(SDL_Renderer* renderer){
 
     SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
     SDL_Rect dest = { x, y, textSurface->w, textSurface->h };
+    if (centerAlign) {
+        dest.x = dest.x - textSurface->w / 2;
+    }
     if (boundRight) {
         dest = {  800 - static_cast<int>(x) - textSurface->w, static_cast<int>(y), textSurface->w, textSurface->h };
     }

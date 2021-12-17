@@ -1,3 +1,11 @@
-﻿  Button.cpp
-..\src\Button.cpp(19,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+﻿  MyGame.cpp
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\Player.h(8,2): warning C4091: 'static ': ignored on left of 'Color' when no variable is declared
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(23,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(28,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(117,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(118,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(119,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(120,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(149,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\src\MyGame.cpp(149,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   MyGame.vcxproj -> C:\Users\btwil\Desktop\University\Year 3\Multiplayer\CI628\build\Debug\MyGame.exe

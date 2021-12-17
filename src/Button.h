@@ -12,10 +12,15 @@ class Button : public GameObject{
 
 	public:
 
+		bool pressed = false;
+
+		SDL_Color color = {255, 255, 255 ,255};
+
 		void init(SDL_Rect rect);
 
 		void render(SDL_Renderer* renderer);
 
-		void destroy();
+		void listener(SDL_Event& event);
+
 
 };

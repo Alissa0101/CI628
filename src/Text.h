@@ -7,6 +7,7 @@ public:
 	std::string text = "0";
 	int fontSize = 72;
 	bool boundRight = false;
+	bool centerAlign = false;
 
 	TTF_Font* font;//s = TTF_OpenFont("C:/Users/btwil/Desktop/University/Year 3/Multiplayer/CI628/build/pong.ttf", fontSize);
 
