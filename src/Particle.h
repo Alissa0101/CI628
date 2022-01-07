@@ -9,6 +9,8 @@ class Particle : public GameObject{
 
 	public:
 
+		SDL_Color startColor = { 255, 255, 255 };
+		SDL_Color endColor = { 255, 255, 255 };
 
 		SDL_Color color = { 255, 255, 255, 0 };
 
@@ -21,6 +23,8 @@ class Particle : public GameObject{
 		void init(SDL_Color _color);
 
 		void update(SDL_Renderer* renderer);
+
+		void lerpColors(double fraction);
 
 		void render(SDL_Renderer* renderer);
 

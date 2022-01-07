@@ -38,9 +38,26 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
         }
     } else if (cmd == "PLAYERREADY_2") {
         if (args.size() == 0) {
-            player1Button.color = { 0, 255, 0, 255 };
+            player2Button.color = { 0, 255, 0, 255 };
             player2Ready = true;
         }
+    } else if (cmd == "GAMEOVER") {
+        if (args.size() == 1) {
+            if (stoi(args.at(0)) == 1) {
+                std::cout << "Player 1 wins!" << std::endl;
+                titleText.setText("Player 1 wins!");
+            } else if (stoi(args.at(0)) == 2) {
+                std::cout << "Player 2 wins!" << std::endl;
+                titleText.setText("Player 2 wins!");
+            }
+            titleText.y = 250;
+            titleText.setFontSize(42);
+            gameOver = true;
+        }
+    }
+
+    if (cmd != "GAME_DATA") {
+        std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
     }
     //std::cout << "Received: " << cmd << " args: " << args.size() << std::endl;
 }
@@ -51,23 +68,36 @@ void MyGame::send(std::string message) {
 
 void MyGame::init(){
 
-    player1Button.init({ (800 / 4)-125, 250, 250, 50});
-    player2Button.init({ 800-(800 / 4)-125, 250, 250, 50 });
+    if (testMode == true) {
+        initTestWorld();
+    }
+    else {
+        player1Button.init({ (800 / 4) - 125, 250, 250, 50 });
+        player2Button.init({ 800 - (800 / 4) - 125, 250, 250, 50 });
 
-    titleText.init(400, 100, 124, false, {255, 255, 255, 255});
+        titleText.init(400, 100, 124, false, { 255, 255, 255, 255 });
 
-    titleText.centerAlign = true;
-    titleText.setText("PONG");
+        titleText.centerAlign = true;
+        titleText.setText("PONG");
 
-    player1ButtonText.init((800 / 4) - 100, 250, 52, false, { 0, 0, 0, 255 });
-    player2ButtonText.init(800 - (800 / 4) - 100, 250, 52, false, { 0, 0, 0, 255 });
+        player1ButtonText.init((800 / 4) - 100, 250, 52, false, { 0, 0, 0, 255 });
+        player2ButtonText.init(800 - (800 / 4) - 100, 250, 52, false, { 0, 0, 0, 255 });
 
-    player1ButtonText.setText("Player 1");
-    player2ButtonText.setText("Player 2");
-    //send("Ready_player1");
+        player1ButtonText.setText("Player 1");
+        player2ButtonText.setText("Player 2");
+    }
 
     //initGameWorld();
     
+}
+
+void MyGame::initTestWorld() {
+    std::cout << "STARTING TEST WORLD!" << std::endl;
+
+    particles.init(1000, testParticlesX, 400);
+
+    particles.setStartColor({255, 255, 255});
+    particles.setEndColor({ 255, 0, 0 });
 }
 
 void MyGame::initGameWorld() {
@@ -89,11 +119,15 @@ void MyGame::initGameWorld() {
 
     particles.init(1000, 400, 400);
 
+    particles.setStartColor({ 255, 255, 255 });
+    particles.setEndColor({ 255, 0, 0 });
+
     globalReady = true;
 }
 
 void MyGame::input(SDL_Event& event) {
-    switch (event.key.keysym.sym) {
+    if (gameOver == false) { // could be done in Main.cpp
+        switch (event.key.keysym.sym) {
         case SDLK_w:
             if (globalReady && enablePlayer1Controls) { send(event.type == SDL_KEYDOWN ? "W_DOWN" : "W_UP"); }
             break;
@@ -106,10 +140,12 @@ void MyGame::input(SDL_Event& event) {
         case SDLK_k:
             if (globalReady && !enablePlayer1Controls) { send(event.type == SDL_KEYDOWN ? "K_DOWN" : "K_UP"); }
             break;
+        }
+        if (globalReady == false) {
+            player1Button.listener(event);
+            player2Button.listener(event);
+        }
     }
-
-    player1Button.listener(event);
-    player2Button.listener(event);
 }
 
 void MyGame::update() {
@@ -133,7 +169,7 @@ void MyGame::update() {
             send("Ready_player2");
             std::cout << "player 2 selected" << std::endl;
             enablePlayer1Controls = false;
-            player1Button.color = { 0, 255, 100, 255 };
+            player2Button.color = { 0, 255, 100, 255 };
             localReady = true;
             player2Ready = true;
         }
@@ -145,7 +181,10 @@ void MyGame::update() {
 
 void MyGame::render(SDL_Renderer* renderer) {
     
-    if (globalReady == true) {
+    if (gameOver == true) {
+        titleText.render(renderer);
+    } else if (globalReady == true) {
+
         particles.update(renderer, ball.x, ball.y);
 
         ball.render(renderer);
@@ -155,8 +194,13 @@ void MyGame::render(SDL_Renderer* renderer) {
 
         player1ScoreText.render(renderer);
         player2ScoreText.render(renderer);
-    }
-    else {
+    } else if (testMode == true) {
+        if (testParticlesX >= 700) {
+            testParticlesX = 0;
+        }
+        testParticlesX += 3;
+        particles.update(renderer, testParticlesX, 300);
+    } else{
         player1Button.render(renderer);
         player2Button.render(renderer);
 

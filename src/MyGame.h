@@ -30,6 +30,9 @@ class MyGame {
         //SDL_Rect player1 = { 800/4, 0, 20, 60 };
         //SDL_Rect player2 = { 3 * 800 / 4 - 20, 0, 20, 60 };
         //SDL_Rect ball = {0, 0, 10, 10};
+
+        bool testMode = false;
+        double testParticlesX = 0;
         
         Ball ball;
 
@@ -56,13 +59,16 @@ class MyGame {
 
         bool globalReady = false;
         bool localReady = false;
+
+        bool gameOver = false;
        
-        
+       
     public:
         std::vector<std::string> messages;
 
         void init();
         void initGameWorld();
+        void initTestWorld();
 
         void on_receive(std::string message, std::vector<std::string>& args);
         void send(std::string message);

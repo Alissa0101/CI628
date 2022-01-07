@@ -11,9 +11,10 @@ void ParticleSystem::init(int _amount, float _x, float _y){
 	}
 }
 
+
+
 void ParticleSystem::update(SDL_Renderer* renderer, int targetX, int targetY){
-	for (Particle* particle : particles)
-	{
+	for (Particle* particle : particles) {
 		if (particle->color.a == 0) {
 			particle->x = targetX + (rand() % 10 - 1);
 			particle->y = targetY + (rand() % 10 - 1);
@@ -26,5 +27,17 @@ void ParticleSystem::update(SDL_Renderer* renderer, int targetX, int targetY){
 
 		}
 		particle->update(renderer);
+	}
+}
+
+void ParticleSystem::setStartColor(SDL_Color color) {
+	for (Particle* particle : particles) {
+		particle->startColor = color;
+	}
+}
+
+void ParticleSystem::setEndColor(SDL_Color color) {
+	for (Particle* particle : particles) {
+		particle->endColor = color;
 	}
 }

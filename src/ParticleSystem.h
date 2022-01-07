@@ -3,8 +3,10 @@
 #include "SDL.h"
 #include <vector>
 
+#include "GameObject.h"
 
-class ParticleSystem{
+
+class ParticleSystem : public GameObject{
 	private:
 
 		int amount;
@@ -13,9 +15,14 @@ class ParticleSystem{
 
 	public:
 
+		
+
 		void init(int _amount, float x, float y);
 
 		void update(SDL_Renderer* renderer, int targetX, int targetY);
+
+		void setStartColor(SDL_Color color);
+		void setEndColor(SDL_Color color);
 
 		void destroy();
 

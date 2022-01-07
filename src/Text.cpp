@@ -19,6 +19,12 @@ void Text::setText(std::string newText){
     text = newText;
 }
 
+void Text::setFontSize(int _fontSize) {
+    TTF_CloseFont(font);
+    font = TTF_OpenFont("pong.ttf", _fontSize);
+    fontSize = _fontSize;
+}
+
 /// <summary>
 /// Render text
 /// https://stackoverflow.com/questions/36198732/draw-text-to-screen

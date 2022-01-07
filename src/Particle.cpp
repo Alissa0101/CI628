@@ -17,6 +17,7 @@ void Particle::update(SDL_Renderer* renderer){
 		}
 	}
 	
+	lerpColors((double)color.a/255);
 
 	velX += accX;
 	velY += accY;
@@ -25,6 +26,12 @@ void Particle::update(SDL_Renderer* renderer){
 	y += velY;
 	//std::cout << velX << " " << velY << std::endl;
 	render(renderer);
+}
+
+void Particle::lerpColors(double fraction) {
+	color.r = (startColor.r - endColor.r) * fraction + endColor.r;
+	color.g = (startColor.g - endColor.g) * fraction + endColor.g;
+	color.b = (startColor.b - endColor.b) * fraction + endColor.b;
 }
 
 void Particle::render(SDL_Renderer* renderer)

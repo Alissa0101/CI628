@@ -14,6 +14,7 @@ public:
 	void init(int xInit, int yInit, int fontSizeInit, bool boundRightInit, SDL_Color colorInit);
 
 	void setText(std::string newText);
+	void setFontSize(int _fontSize);
 
 	void render(SDL_Renderer* renderer);
 
