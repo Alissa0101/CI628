@@ -14,6 +14,7 @@
 #include "Ball.h"
 #include "ParticleSystem.h"
 #include "Button.h"
+#include "Image.h"
 
 static struct GameData {
     int player1Y = 0;
@@ -52,6 +53,8 @@ class MyGame {
         Button player1Button;
         Button player2Button;
 
+        Image trophy;
+
         bool enablePlayer1Controls = true;
 
         bool player1Ready = false;
@@ -73,6 +76,7 @@ class MyGame {
         void on_receive(std::string message, std::vector<std::string>& args);
         void send(std::string message);
         void input(SDL_Event& event);
+        void mouseMoveEvent(SDL_Event& event);
         void update();
         void render(SDL_Renderer* renderer);
 

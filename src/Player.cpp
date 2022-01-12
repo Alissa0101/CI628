@@ -1,9 +1,8 @@
 #include "Player.h"
 #include <SDL_image.h>
 
-void Player::init(int _x, Color _color){
+void Player::init(int _x){
 	x = static_cast<int>(_x);
-	color = _color;
 
 	surface = IMG_Load("BatTexture.png");
 

@@ -50,8 +50,8 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
                 std::cout << "Player 2 wins!" << std::endl;
                 titleText.setText("Player 2 wins!");
             }
-            titleText.y = 250;
-            titleText.setFontSize(42);
+            titleText.y = 150;
+            titleText.setFontSize(60);
             gameOver = true;
         }
     }
@@ -75,6 +75,9 @@ void MyGame::init(){
         player1Button.init({ (800 / 4) - 125, 250, 250, 50 });
         player2Button.init({ 800 - (800 / 4) - 125, 250, 250, 50 });
 
+        player1Button.setHoverColor({150, 150, 150, 255});
+        player2Button.setHoverColor({ 150, 150, 150, 255 });
+
         titleText.init(400, 100, 124, false, { 255, 255, 255, 255 });
 
         titleText.centerAlign = true;
@@ -85,6 +88,10 @@ void MyGame::init(){
 
         player1ButtonText.setText("Player 1");
         player2ButtonText.setText("Player 2");
+
+        trophy.init(400, 400, "TrophyTexture.png");
+        trophy.setSize(400, 283);
+
     }
 
     //initGameWorld();
@@ -103,8 +110,8 @@ void MyGame::initTestWorld() {
 void MyGame::initGameWorld() {
     ball.init(100, 100, 10, { 255, 255, 0 });
 
-    player1.init(800 / 4, { 255, 255, 255, 255 });
-    player2.init(3 * 800 / 4 - 20, { 255, 255, 255, 255 });
+    player1.init(800 / 4);
+    player2.init(3 * 800 / 4 - 20);
 
     //player1.rect = { 0, 0, 20, 60 };
     //player1.color = { 255, 255, 255, 255 };
@@ -142,9 +149,16 @@ void MyGame::input(SDL_Event& event) {
             break;
         }
         if (globalReady == false) {
-            player1Button.listener(event);
-            player2Button.listener(event);
+            player1Button.clickListener(event);
+            player2Button.clickListener(event);
         }
+    }
+}
+
+void MyGame::mouseMoveEvent(SDL_Event& event) {
+    if (globalReady == false) {
+        player1Button.hoverListener(event);
+        player2Button.hoverListener(event);
     }
 }
 
@@ -161,7 +175,7 @@ void MyGame::update() {
         if (player1Button.pressed == true && player1Ready == false) {
             send("Ready_player1");
             std::cout << "player 1 selected" << std::endl;
-            player1Button.color = { 0, 255, 100, 255 };
+            player1Button.renderColor = { 0, 255, 100, 255 };
             localReady = true;
             player1Ready = true;
         }
@@ -169,7 +183,7 @@ void MyGame::update() {
             send("Ready_player2");
             std::cout << "player 2 selected" << std::endl;
             enablePlayer1Controls = false;
-            player2Button.color = { 0, 255, 100, 255 };
+            player2Button.renderColor = { 0, 255, 100, 255 };
             localReady = true;
             player2Ready = true;
         }
@@ -181,8 +195,11 @@ void MyGame::update() {
 
 void MyGame::render(SDL_Renderer* renderer) {
     
+    
+
     if (gameOver == true) {
         titleText.render(renderer);
+        trophy.render(renderer);
     } else if (globalReady == true) {
 
         particles.update(renderer, ball.x, ball.y);
@@ -221,5 +238,7 @@ void MyGame::end() {
 
     player1ButtonText.end();
     player2ButtonText.end();
+
+    trophy.end();
 }
 

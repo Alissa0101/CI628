@@ -97,6 +97,10 @@ void loop(SDL_Renderer* renderer) {
                 }
             }
 
+            if (event.type == SDL_MOUSEMOTION) {
+                game->mouseMoveEvent(event);
+            }
+
             if (event.type == SDL_QUIT) {
                 is_running = false;
             }
