@@ -16,16 +16,19 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
             game_data.player2Score = stoi(args.at(1));
             player1ScoreText.setText(std::to_string(game_data.player1Score));
             player2ScoreText.setText(std::to_string(game_data.player2Score));
+            sound.playSound(SOUND_SCORE);
         }
     }
     else if (cmd == "BALL_HIT_BAT1") {
         if (args.size() == 0) {
             player1.hit(1, ball.y);
+            sound.playSound(SOUND_HITBAT);
         }
     }
     else if (cmd == "BALL_HIT_BAT2") {
         if (args.size() == 0) {
             player2.hit(-1, ball.y);
+            sound.playSound(SOUND_HITBAT);
         }
     } else if (cmd == "GAMEREADY") {
         if (args.size() == 0) {
@@ -50,9 +53,14 @@ void MyGame::on_receive(std::string cmd, std::vector<std::string>& args) {
                 std::cout << "Player 2 wins!" << std::endl;
                 titleText.setText("Player 2 wins!");
             }
+            else {
+                std::cout << "Player 2 wins!" << std::endl;
+                titleText.setText("Player disconnected");
+            }
             titleText.y = 150;
             titleText.setFontSize(60);
             gameOver = true;
+            sound.playSound(SOUND_GAMEOVER);
         }
     }
 
@@ -89,13 +97,13 @@ void MyGame::init(){
         player1ButtonText.setText("Player 1");
         player2ButtonText.setText("Player 2");
 
-        trophy.init(400, 400, "TrophyTexture.png");
+        trophy.init(400, 400, "Assets/TrophyTexture.png");
         trophy.setSize(400, 283);
 
+        sound.init();
+        sound.playSound(SOUND_BACKGROUND);
     }
-
     //initGameWorld();
-    
 }
 
 void MyGame::initTestWorld() {

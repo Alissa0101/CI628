@@ -8,7 +8,7 @@ void Text::init(int xInit, int yInit, int fontSizeInit, bool boundRightInit, SDL
     y = yInit;
     fontSize = fontSizeInit;
     boundRight = boundRightInit;
-    font = TTF_OpenFont("pong.ttf", fontSize);
+    font = TTF_OpenFont("Assets/pong.ttf", fontSize);
 }
 
 void Text::setText(std::string newText){
@@ -21,7 +21,7 @@ void Text::setText(std::string newText){
 
 void Text::setFontSize(int _fontSize) {
     TTF_CloseFont(font);
-    font = TTF_OpenFont("pong.ttf", _fontSize);
+    font = TTF_OpenFont("Assets/pong.ttf", _fontSize);
     fontSize = _fontSize;
 }
 

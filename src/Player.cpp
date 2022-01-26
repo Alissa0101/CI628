@@ -4,7 +4,7 @@
 void Player::init(int _x){
 	x = static_cast<int>(_x);
 
-	surface = IMG_Load("BatTexture.png");
+	surface = IMG_Load("Assets/BatTexture.png");
 
 }
 
@@ -12,7 +12,7 @@ void Player::render(SDL_Renderer* renderer){
 	rect.x = static_cast<int>(x);
 	rect.y = static_cast<int>(y);
 
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface); //IMG_LoadTexture(renderer, "BatTexture.png");//SDL_CreateTextureFromSurface(renderer, image);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 	
 
 	//SDL_RenderCopy(renderer, texture, NULL, NULL);
@@ -24,8 +24,7 @@ void Player::render(SDL_Renderer* renderer){
 		angle -= rand() % 10 + 1;
 	} else if (angle < 0) {
 		angle += rand() % 10 + 1;
-	}
-	if (angle >= -3 && angle <= 3) {
+	} if (angle >= -3 && angle <= 3) {
 		angle = 0;
 	}
 	

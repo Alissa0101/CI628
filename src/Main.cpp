@@ -1,6 +1,7 @@
 #include "SDL_net.h"
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 #include "MyGame.h"
 
@@ -147,7 +148,7 @@ int run_game() {
 int main(int argc, char** argv) {
 
     // Initialize SDL
-    if (SDL_Init(0) == -1) {
+    if (SDL_Init(0 | SDL_INIT_AUDIO) == -1) {
         printf("SDL_Init: %s\n", SDL_GetError());
         exit(1);
     }
@@ -168,6 +169,12 @@ int main(int argc, char** argv) {
     if (IMG_Init(IMG_INIT_PNG) == -1) {
         printf("IMG_Init: %s\n", IMG_GetError());
         exit(2);
+    }
+
+    //Initialize SDL_mixer
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
     }
 
     IPaddress ip;

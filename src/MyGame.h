@@ -6,6 +6,7 @@
 #include <string>
 
 #include "SDL.h"
+#include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
 
@@ -15,6 +16,7 @@
 #include "ParticleSystem.h"
 #include "Button.h"
 #include "Image.h"
+#include "Sound.h"
 
 static struct GameData {
     int player1Y = 0;
@@ -31,7 +33,6 @@ class MyGame {
         //SDL_Rect player1 = { 800/4, 0, 20, 60 };
         //SDL_Rect player2 = { 3 * 800 / 4 - 20, 0, 20, 60 };
         //SDL_Rect ball = {0, 0, 10, 10};
-
         bool testMode = false;
         double testParticlesX = 0;
         
@@ -54,6 +55,8 @@ class MyGame {
         Button player2Button;
 
         Image trophy;
+
+        Sound sound;
 
         bool enablePlayer1Controls = true;
 
